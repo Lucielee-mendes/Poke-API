@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "2f9abe9a-d656-4bf1-831b-f56c9ca9514c",
+		"name": "api pokemon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "buscar todos pokemons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/poke-api/api/v1/pokemons",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"poke-api",
+						"api",
+						"v1",
+						"pokemons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar pokemon pelo nome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/poke-api/api/v1/pokemons/pikachu",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"poke-api",
+						"api",
+						"v1",
+						"pokemons",
+						"pikachu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/poke-api/api/v1/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"poke-api",
+						"api",
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adicionar pokemon",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"pikachu\",\r\n    \"tipo\": \"eletrico\",\r\n    \"altura\": 0.4,\r\n    \"peso\": 6,\r\n    \"level\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/poke-api/api/v1/pokemons",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"poke-api",
+						"api",
+						"v1",
+						"pokemons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletar pokemon",
+			"request": {
+				"method": "DELETE",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
