@@ -24,6 +24,14 @@ public class PokemonService {
         return pokemonRepository.findByNome(nome);
     }
 
+    public boolean existePokemon(Long id) {
+        return pokemonRepository.existsById(id);
+    }
+
+    public Pokemon buscarPorId(Long id) {
+        return pokemonRepository.findById(id).orElse(null);
+    }
+
     public void adicionar(Pokemon pokemon){
         pokemonRepository.save(pokemon);
     }
@@ -32,6 +40,12 @@ public class PokemonService {
         Pokemon pokemonParaRemover = pokemonRepository.findById(id).get();
         pokemonRepository.delete(pokemonParaRemover);
        return pokemonParaRemover;
+    }
+
+    public Pokemon removerPorNome(String nome){
+        Pokemon pokemonRemoverPorNome = pokemonRepository.findByNome(nome);
+        pokemonRepository.delete(pokemonRemoverPorNome);
+        return pokemonRemoverPorNome;
     }
 
 }

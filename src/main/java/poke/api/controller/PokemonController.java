@@ -41,4 +41,26 @@ public class PokemonController {
         return ResponseEntity.ok(pokemonremovido);
     }
 
+    @DeleteMapping("/nome/{nomePokemon}")
+    public ResponseEntity<Pokemon> removerPokemonPorNome(@PathVariable("nome")String nome ){
+        Pokemon pokemonremovidoNome =  pokemonService.removerPorNome(nome);
+        return ResponseEntity.ok(pokemonremovidoNome);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> alterarNomeTipo(@PathVariable Long id, @RequestBody Pokemon pokemonAtualizado) {
+        if (pokemonService.existePokemon(id)) {
+            Pokemon pokemonExistente = pokemonService.buscarPorId(id);
+
+            pokemonExistente.setNome(pokemonAtualizado.getNome());
+            pokemonExistente.setTipo(pokemonAtualizado.getTipo());
+
+            pokemonService.adicionar(pokemonExistente);
+
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     }
