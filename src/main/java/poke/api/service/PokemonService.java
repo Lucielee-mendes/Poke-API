@@ -28,6 +28,19 @@ public class PokemonService {
         return pokemonRepository.existsById(id);
     }
 
+    public Pokemon alterarNomeETipo(Long id, Pokemon pokemon) {
+        if (existePokemon(id)) {
+            Pokemon pokemonParaAlterar = buscarPorId(id);
+
+            pokemonParaAlterar.setNome(pokemon.getNome());
+            pokemonParaAlterar.setTipo(pokemon.getTipo());
+            pokemonRepository.save(pokemonParaAlterar);
+
+            return pokemonParaAlterar;
+        }
+        return null;
+    }
+
     public Pokemon buscarPorId(Long id) {
         return pokemonRepository.findById(id).orElse(null);
     }
@@ -47,5 +60,6 @@ public class PokemonService {
         pokemonRepository.delete(pokemonRemoverPorNome);
         return pokemonRemoverPorNome;
     }
+
 
 }
