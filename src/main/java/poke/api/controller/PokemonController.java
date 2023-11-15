@@ -3,6 +3,8 @@ package poke.api.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import poke.api.integration.response.PokemonResponse;
+import poke.api.integration.service.PokemonIntegrationService;
 import poke.api.model.Pokemon;
 import poke.api.service.PokemonService;
 
@@ -13,8 +15,10 @@ import java.util.List;
 public class PokemonController {
 
     private PokemonService pokemonService;
+    private PokemonIntegrationService pokemonIntegrationService;
 
-    public PokemonController(PokemonService pokemonService) {
+    public PokemonController(PokemonService pokemonService, PokemonIntegrationService pokemonIntegrationService) {
+        this.pokemonIntegrationService = pokemonIntegrationService;
         this.pokemonService = pokemonService;
     }
 
@@ -34,6 +38,13 @@ public class PokemonController {
         Pokemon pokemonBuscado = this.pokemonService.buscarPorId(id);
         return ResponseEntity.ok(pokemonBuscado);
     }
+
+    @GetMapping("/api-externa/{nome}")
+    public ResponseEntity<PokemonResponse> buscarPokemonNoServicoExterno(@PathVariable("nome") String nome){
+        PokemonResponse pokemonsBuscarServicoExterno = this.pokemonIntegrationService.buscarPokemonNoServicoExternoPeloNome(nome);
+        return ResponseEntity.ok(pokemonsBuscarServicoExterno);
+    }
+
 
     @PostMapping
     public ResponseEntity<Void> adicionarPokemon(@RequestBody Pokemon pokemon) {
