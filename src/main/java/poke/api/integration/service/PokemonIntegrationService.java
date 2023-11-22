@@ -22,6 +22,16 @@ public class PokemonIntegrationService {
     public PokemonResponse buscarPokemonNoServicoExternoPeloNome(String nome){
         String urlCompleta = this.uri +"/" + nome;
         PokemonResponse pokemonExterno = this.restTemplate.getForObject(urlCompleta, PokemonResponse.class);
+
+        alterarNomeParaInicialMaiuscula(pokemonExterno);
         return pokemonExterno;
     }
+
+    private static void alterarNomeParaInicialMaiuscula(PokemonResponse pokemonExterno) {
+        String nomePokemon = pokemonExterno.getName();
+        nomePokemon = nomePokemon.substring(0,1).toUpperCase().concat(nomePokemon.substring(1));
+        pokemonExterno.setName(nomePokemon);
+    }
+
+
 }
