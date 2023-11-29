@@ -2,6 +2,8 @@ server:
   servlet:
     context-path: /poke-api
   port: 8081
+  error:
+    include-message: always
 
 spring:
   datasource:
