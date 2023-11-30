@@ -30,6 +30,10 @@ public class PokemonService {
         return pokemonRepository.findByNome(nome);
     }
 
+    public List<Pokemon> buscarPeloTipo(String tipo){
+        return  pokemonRepository.findByTipo(tipo);
+    }
+
     public boolean existePokemon(Long id) {
         return pokemonRepository.existsById(id);
     }
